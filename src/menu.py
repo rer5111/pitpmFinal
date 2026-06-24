@@ -50,7 +50,7 @@ def handle_input(inp: str, db: MovieDB, **data) -> dict:
         return (0, "Сортировка по году выпуска", movies)
     
     elif inp == "7":
-        movies = db.get_movies(year_sort=True)
+        movies = db.get_movies(year_sort=False)
         return (0, "Сортировка по году выпуска", movies)
         
     elif inp == "0":
