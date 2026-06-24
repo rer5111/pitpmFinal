@@ -11,6 +11,7 @@ def show_ui_menu():
     print("5. Фильтрация по жанру")
     print("6. Сортировка по году выпуска")
     print("7. Обратная сортировка по году выпуска")
+    print("8. Фильтрация по году выпуска")
     print("0. Выход")
 
 def main():
@@ -38,6 +39,13 @@ def main():
                 data["id"] = input("ID фильма для удаления: ").strip()
             elif choice == "5":
                 data["genre"] = input("Введите жанр для фильтрации: ").strip()
+            elif choice == "8":
+                data["year"] = input("Введите год: ")
+                inp = input("До года - 0\nПосле года - 1:\n")
+                if inp == "0":
+                    data["before"] = True
+                else:
+                    data["before"] = False
             
             # Отправляем данные на обработку в меню
             status, message, extra = handle_input(choice, db, **data)
