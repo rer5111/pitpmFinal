@@ -84,5 +84,8 @@ def print_movies_table(movies: list):
         return
     print(f"\n{'ID':<5} | {'Название':<25} | {'Год':<6} | {'Рейтинг':<7} | {'Жанр':<15}")
     print("-" * 70)
+    rating = 0
     for m in movies:
         print(f"{m.id:<5} | {m.title:<25} | {m.year:<6} | {m.rating:<7} | {m.genre:<15}")
+        rating += m.rating
+    print(f"Средний рейтинг: {rating/len(movies)}")
