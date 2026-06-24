@@ -58,7 +58,21 @@ def handle_input(inp: str, db: MovieDB, **data) -> dict:
     elif inp == "7":
         movies = db.get_movies(year_sort=False)
         return (0, "Сортировка по году выпуска", movies)
-        
+    
+    elif inp == "8":
+        movies = db.get_movies()
+        out = []
+        try:
+            for m in movies:
+                if data.get("before"):
+                    if m.year < int(data.get("year")):
+                        out.append(m)
+                else:
+                    if m.year > int(data.get("year")):
+                        out.append(m)
+        except:
+            return(1, "Введено неправильное значение", None)
+        return (0, "Фильтрация по году", out)
     elif inp == "0":
         return (-1, "До свидания!", None)
         
