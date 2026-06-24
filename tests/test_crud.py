@@ -67,3 +67,15 @@ def test_year_sort(connect: MovieDB):
     assert movies[0].year == 1999
     assert movies[1].year == 2015
     assert movies[2].year == 2025
+
+def test_year_sort_reverse(connect: MovieDB):
+    connect.create_movie("1", 1999, 8.0, "Драма")
+    connect.create_movie("2", 2025, 9.0, "Фантастика")
+    connect.create_movie("3", 2015, 7.5, "Комедия")
+
+    movies = connect.get_movies(year_sort=False)
+
+    assert len(movies) == 3
+    assert movies[0].year == 2025
+    assert movies[1].year == 2015
+    assert movies[2].year == 1999
