@@ -81,3 +81,15 @@ def test_menu_unknown_function(db):
     assert status == 1
     assert message == "Данная функция отсутствует в меню."
     assert extra is None
+
+def test_menu_empty_string(db):
+    status, message, extra = handle_input("2", db, title="", year=2020, rating=10, genre="")
+    assert status == 1
+    assert message == "Нельзя добавить пустое значение."
+    assert extra is None
+
+def test_menu_wrong_rating(db):
+    status, message, extra = handle_input("2", db, title="1", year=2020, rating=12, genre="genre")
+    assert status == 1
+    assert message == "Введите рейтинг от 0 до 10"
+    assert extra is None

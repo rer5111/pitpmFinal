@@ -11,7 +11,10 @@ def handle_input(inp: str, db: MovieDB, **data) -> dict:
             year = int(data.get("year"))
             rating = float(data.get("rating"))
             genre = data.get("genre")
-            
+            if title == "" or genre == "":
+                return (1, "Нельзя добавить пустое значение.", None)
+            if not 0 <= rating <= 10:
+                return (1, "Введите рейтинг от 0 до 10", None)
             movie_id = db.create_movie(title, year, rating, genre)
             return (0, f"Фильм добавлен с ID: {movie_id}", None)
         except (ValueError, TypeError):
@@ -24,7 +27,10 @@ def handle_input(inp: str, db: MovieDB, **data) -> dict:
             year = int(data.get("year"))
             rating = float(data.get("rating"))
             genre = data.get("genre")
-            
+            if title == "" or genre == "":
+                return (1, "Нельзя добавить пустое значение.", None)
+            if not 0 <= rating <= 10:
+                return (1, "Введите рейтинг от 0 до 10", None)
             if db.update_movie(movie_id, title, year, rating, genre):
                 return (0, "Фильм успешно обновлен!", None)
             return (1, "Фильм с таким ID не найден!", None)
