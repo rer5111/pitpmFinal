@@ -48,6 +48,10 @@ def handle_input(inp: str, db: MovieDB, **data) -> dict:
     elif inp == "6":
         movies = db.get_movies(year_sort=True)
         return (0, "Сортировка по году выпуска", movies)
+    
+    elif inp == "7":
+        movies = db.get_movies(year_sort=True)
+        return (0, "Сортировка по году выпуска", movies)
         
     elif inp == "0":
         return (-1, "До свидания!", None)
